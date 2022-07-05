@@ -16,10 +16,10 @@ const Help = ({ navigation, route }) => {
 
   const [webViewShow, setWebViewShow] = useState(false);
 
-  const [currentUrl, setCurrentUrl] = useState("https://turbo-browser.netlify.app/help.html");
+  const [currentUrl, setCurrentUrl] = useState("https://videotogether.github.io/");
 
   useEffect(() => {
-    setCurrentUrl("https://turbo-browser.netlify.app/help.html");
+    setCurrentUrl("https://videotogether.github.io/");
   }, []);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const Help = ({ navigation, route }) => {
           </View>
           </TouchableOpacity>
           <View style={styles.history1_BB}>
-            <Text style={styles.history_title_1B_txt_DARK}>FAQs</Text>
+            <Text style={styles.history_title_1B_txt_DARK}>帮助</Text>
           </View>
         </View>
       :
@@ -62,7 +62,7 @@ const Help = ({ navigation, route }) => {
           </View>
           </TouchableOpacity>
           <View style={styles.history1_BB}>
-            <Text style={styles.history_title_1B_txt}>FAQs</Text>
+            <Text style={styles.history_title_1B_txt}>帮助</Text>
           </View>
           <View style={{
             marginLeft: 10,
@@ -89,7 +89,6 @@ const Help = ({ navigation, route }) => {
           geolocationEnabled={true}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
-          userAgent="Mozilla/5.0 (Linux; Android 5.1.1; Nexus 5 Build/LMY48B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.65 Mobile Safari/537.36"
         />
         : <></>
       }

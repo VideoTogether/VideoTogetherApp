@@ -26,7 +26,7 @@ const Settings = ({ navigation, route }) => {
   const [rippleOverflow, setRippleOverflow] = useState(false);
 
   const [searchEngineAlert, setSearchEngineAlert] = useState(false);
-  const [selectedSelection, setSelectedSelection] = useState("Google");
+  const [selectedSelection, setSelectedSelection] = useState("百度");
   const [defaultBrowserNum, setDefaultBrowserNum] = useState(1);
 
   const appInfo = useSelector((state) => state.appInfo);
@@ -70,26 +70,20 @@ const Settings = ({ navigation, route }) => {
     },
     {
       label: "Yahoo!"
+    },
+    {
+      label: "百度"
     }
   ];
 
-  const onShare = async () => {
-    try {
-        const result = await Share.share({
-          message:
-            "Try Turbo Browser. I've been using it and it's really amazing.\n\nGet it here - https://play.google.com/store/apps/details?id=com.turbo_infinitus",
-        });
-    } catch (error) {
-      // error
-    }
-  }
+
 
   const clearAll = async () => {
     try {
 
       await AsyncStorage.clear();
       dispatch({type: "CHANGE_APPINFO", value: {
-        searchEngine: "Google",
+        searchEngine: "百度",
         animations: true,
         animationDirection: true,
         disableCookies: false,
@@ -97,7 +91,7 @@ const Settings = ({ navigation, route }) => {
       }});
       
       setDefaultBrowserNum(1);
-      setSelectedSelection("Google");
+      setSelectedSelection("百度");
 
       setIsAnimationEnabled(true);
       setIsAnimationDirEnabled(true);
@@ -213,7 +207,7 @@ const Settings = ({ navigation, route }) => {
         </View>
       </TouchableOpacity>
       <View style={styles.history1_BB}>
-        <Text style={styles.history_title_1B_txt}>Settings</Text>
+        <Text style={styles.history_title_1B_txt}>设置</Text>
       </View>
     </View>
     {/* <LinearGradient colors={['#EDEEEEFE', '#FFFFFFFF']} style={styles.linearGradient_1}></LinearGradient> */}
@@ -221,7 +215,7 @@ const Settings = ({ navigation, route }) => {
     <ScrollView style={styles.settingsMainContainer} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={'handled'} scrollEventThrottle={1}>
 
     <View>
-      <Text style={styles.section_1_txt}>BASICS</Text>
+      <Text style={styles.section_1_txt}>通用</Text>
     </View>
 
     <View style={styles.section_1_CONT_1}>
@@ -231,73 +225,11 @@ const Settings = ({ navigation, route }) => {
       >
         <View>
           <Text style={styles.section_1_txt_A}>
-            Search Engine
+            搜索引擎
           </Text>
           <Text style={styles.section_1_txt_B}>
             {selectedSelection}
           </Text>
-        </View>
-      </TouchableNativeFeedback>
-    </View>
-
-    <View style={styles.section_1_CONT_SWH_1}>
-      <TouchableNativeFeedback
-        background={TouchableNativeFeedback.Ripple("#FFFFFF", rippleOverflow)}
-      >
-        <View style={{
-          display: "flex",
-          flexDirection: "row",
-          marginLeft: 12,
-          marginRight: 12,
-        }}>
-          <Text style={styles.section_1_txt_A_TF2}>
-            Enable Animations
-          </Text>
-          <Switch
-            trackColor={{ false: "#EAE7E7FE", true: "#9DFEBEFE" }}
-            thumbColor={isAnimationEnabled ? "#3AE07AFE" : "#CCCED0FE"}
-            value={isAnimationEnabled}
-            onValueChange={async () => {
-              try {
-                await AsyncStorage.setItem("appInfo", JSON.stringify({...appInfo, animations: !isAnimationEnabled}));
-                dispatch({type: "CHANGE_APPINFO", value: {...appInfo, animations: !isAnimationEnabled}});
-                setIsAnimationEnabled(!isAnimationEnabled);
-              } catch(error) {
-                // error
-              }
-            }}
-          />
-        </View>
-      </TouchableNativeFeedback>
-    </View>
-
-    <View style={styles.section_1_CONT_SWH_1}>
-      <TouchableNativeFeedback
-        background={TouchableNativeFeedback.Ripple("#FFFFFF", rippleOverflow)}
-      >
-        <View style={{
-          display: "flex",
-          flexDirection: "row",
-          marginLeft: 12,
-          marginRight: 12,
-        }}>
-          <Text style={styles.section_1_txt_A_TF2}>
-            Toggle Animation Direction
-          </Text>
-          <Switch
-            trackColor={{ false: "#EAE7E7FE", true: "#9DFEBEFE" }}
-            thumbColor={isAnimationDirEnabled ? "#3AE07AFE" : "#CCCED0FE"}
-            value={isAnimationDirEnabled}
-            onValueChange={async () => {
-              try {
-                await AsyncStorage.setItem("appInfo", JSON.stringify({...appInfo, animationDirection: !isAnimationDirEnabled}));
-                dispatch({type: "CHANGE_APPINFO", value: {...appInfo, animationDirection: !isAnimationDirEnabled}});
-                setIsAnimationDirEnabled(!isAnimationDirEnabled);
-              } catch(error) {
-                // error
-              }
-            }}
-          />
         </View>
       </TouchableNativeFeedback>
     </View>
@@ -310,7 +242,7 @@ const Settings = ({ navigation, route }) => {
     }}></View>
 
     <View>
-      <Text style={styles.section_1_txt}>ADVANCED</Text>
+      <Text style={styles.section_1_txt}>高级设置</Text>
     </View>
 
     <View style={styles.section_1_CONT_SWH_1}>
@@ -321,7 +253,7 @@ const Settings = ({ navigation, route }) => {
           CookieManager.clearAll()
           .then((res) => {
             Snackbar.show({
-              text: "Cookies cleared successfully",
+              text: "清除成功",
               duration: Snackbar.LENGTH_SHORT,
               backgroundColor: "#282C34FF",
             });
@@ -335,38 +267,12 @@ const Settings = ({ navigation, route }) => {
           marginRight: 12,
         }}>
           <Text style={styles.section_1_txt_A_TF2}>
-            Clear Cookies
+            清除 Cookies
           </Text>
         </View>
       </TouchableNativeFeedback>
     </View>
 
-    <View style={styles.section_1_CONT_SWH_1}>
-      <TouchableNativeFeedback
-        background={TouchableNativeFeedback.Ripple("#AFB1B13D", rippleOverflow)}
-        onPress={ () => 
-          {
-            // ;-;
-            Snackbar.show({
-              text: "Cache cleared successfully",
-              duration: Snackbar.LENGTH_SHORT,
-              backgroundColor: "#282C34FF",
-            });
-          }
-        }
-      >
-        <View style={{
-          display: "flex",
-          flexDirection: "row",
-          marginLeft: 12,
-          marginRight: 12,
-        }}>
-          <Text style={styles.section_1_txt_A_TF2}>
-            Clear Cache
-          </Text>
-        </View>
-      </TouchableNativeFeedback>
-    </View>
 
     <View style={styles.section_1_CONT_SWH_1}>
       <TouchableNativeFeedback
@@ -374,7 +280,7 @@ const Settings = ({ navigation, route }) => {
         onPress={() => {
           clearAll();
           Snackbar.show({
-            text: "App Data was cleared successfully",
+            text: "清除成功",
             duration: Snackbar.LENGTH_SHORT,
             backgroundColor: "#282C34FF",
           });
@@ -387,70 +293,8 @@ const Settings = ({ navigation, route }) => {
           marginRight: 12,
         }}>
           <Text style={styles.section_1_txt_A_TF2}>
-            Clear App Data
+            清除应用数据
           </Text>
-        </View>
-      </TouchableNativeFeedback>
-    </View>
-
-    <View style={styles.section_1_CONT_SWH_1}>
-      <TouchableNativeFeedback
-        background={TouchableNativeFeedback.Ripple("#FFFFFF", rippleOverflow)}
-      >
-        <View style={{
-          display: "flex",
-          flexDirection: "row",
-          marginLeft: 12,
-          marginRight: 12,
-        }}>
-          <Text style={styles.section_1_txt_A_TF2}>
-            Disable Cookies
-          </Text>
-          <Switch
-            trackColor={{ false: "#EAE7E7FE", true: "#9DFEBEFE" }}
-            thumbColor={isCookiesDisabled ? "#3AE07AFE" : "#CCCED0FE"}
-            value={isCookiesDisabled}
-            onValueChange={async () => {
-              try {
-                await AsyncStorage.setItem("appInfo", JSON.stringify({...appInfo, disableCookies: !isCookiesDisabled}));
-                dispatch({type: "CHANGE_APPINFO", value: {...appInfo, disableCookies: !isCookiesDisabled}});
-                setIsCookiesDisabled(!isCookiesDisabled);
-              } catch(error) {
-                // error
-              }
-            }}
-          />
-        </View>
-      </TouchableNativeFeedback>
-    </View>
-
-    <View style={styles.section_1_CONT_SWH_1}>
-      <TouchableNativeFeedback
-        background={TouchableNativeFeedback.Ripple("#FFFFFF", rippleOverflow)}
-      >
-        <View style={{
-          display: "flex",
-          flexDirection: "row",
-          marginLeft: 12,
-          marginRight: 12,
-        }}>
-          <Text style={styles.section_1_txt_A_TF2}>
-            Disable Javascript
-          </Text>
-          <Switch
-            trackColor={{ false: "#EAE7E7FE", true: "#9DFEBEFE" }}
-            thumbColor={isJSDisabled ? "#3AE07AFE" : "#CCCED0FE"}
-            value={isJSDisabled}
-            onValueChange={async () => {
-              try {
-                await AsyncStorage.setItem("appInfo", JSON.stringify({...appInfo, disableJS: !isJSDisabled}));
-                dispatch({type: "CHANGE_APPINFO", value: {...appInfo, disableJS: !isJSDisabled}});
-                setIsJSDisabled(!isJSDisabled);
-              } catch(error) {
-                // error
-              }
-            }}
-          />
         </View>
       </TouchableNativeFeedback>
     </View>
@@ -470,46 +314,6 @@ const Settings = ({ navigation, route }) => {
       <TouchableNativeFeedback
         background={TouchableNativeFeedback.Ripple("#AFB1B13D", rippleOverflow)}
         onPress={() => {
-          navigation.navigate('Search', { name: "turbo/https://turbo-browser-policy.netlify.app/" });
-        }}
-      >
-        <View style={{
-          display: "flex",
-          flexDirection: "row",
-          marginLeft: 12,
-          marginRight: 12,
-        }}>
-          <Text style={styles.section_1_txt_A_TF2}>
-            Privacy Policy
-          </Text>
-        </View>
-      </TouchableNativeFeedback>
-    </View>
-
-    <View style={styles.section_1_CONT_SWH_1}>
-      <TouchableNativeFeedback
-        background={TouchableNativeFeedback.Ripple("#AFB1B13D", rippleOverflow)}
-        onPress={() => {
-          navigation.navigate('Search', { name: "turbo/https://turbo-browser.netlify.app/" });
-        }}
-      >
-        <View style={{
-          display: "flex",
-          flexDirection: "row",
-          marginLeft: 12,
-          marginRight: 12,
-        }}>
-          <Text style={styles.section_1_txt_A_TF2}>
-            Visit Website
-          </Text>
-        </View>
-      </TouchableNativeFeedback>
-    </View>
-
-    <View style={styles.section_1_CONT_SWH_1}>
-      <TouchableNativeFeedback
-        background={TouchableNativeFeedback.Ripple("#AFB1B13D", rippleOverflow)}
-        onPress={() => {
           navigation.navigate('Help', { name: "Home" });
         }}
       >
@@ -520,49 +324,12 @@ const Settings = ({ navigation, route }) => {
           marginRight: 12,
         }}>
           <Text style={styles.section_1_txt_A_TF2}>
-            FAQs
+            帮助
           </Text>
         </View>
       </TouchableNativeFeedback>
     </View>
 
-    <View style={styles.section_1_CONT_SWH_1}>
-      <TouchableNativeFeedback
-        background={TouchableNativeFeedback.Ripple("#AFB1B13D", rippleOverflow)}
-        onPress={onShare}
-      >
-        <View style={{
-          display: "flex",
-          flexDirection: "row",
-          marginLeft: 12,
-          marginRight: 12,
-        }}>
-          <Text style={styles.section_1_txt_A_TF2}>
-            Share App
-          </Text>
-        </View>
-      </TouchableNativeFeedback>
-    </View>
-
-    <View style={styles.section_1_CONT_SWH_1}>
-      <TouchableNativeFeedback
-        background={TouchableNativeFeedback.Ripple("#AFB1B13D", rippleOverflow)}
-        onPress={() => {
-          Linking.openURL("https://play.google.com/store/apps/details?id=com.turbo_infinitus");
-        }}
-      >
-        <View style={{
-          display: "flex",
-          flexDirection: "row",
-          marginLeft: 12,
-          marginRight: 12,
-        }}>
-          <Text style={styles.section_1_txt_A_TF2}>
-            Rate App
-          </Text>
-        </View>
-      </TouchableNativeFeedback>
-    </View>
 
     <View style={{
       minHeight: 1,
@@ -571,49 +338,6 @@ const Settings = ({ navigation, route }) => {
       marginBottom: 10,
     }}></View>
 
-    <View>
-      <Text style={styles.section_1_txt}>ABOUT</Text>
-    </View>
-
-    <View style={styles.section_1_CONT_SWH_1}>
-      <TouchableNativeFeedback
-        background={TouchableNativeFeedback.Ripple("#AFB1B13D", rippleOverflow)}
-      >
-        <View style={{
-          display: "flex",
-          flexDirection: "row",
-          marginLeft: 12,
-          marginRight: 12,
-        }}>
-          <Text style={styles.section_1_txt_A_TF2}>
-            Version
-          </Text>
-          <Text style={styles.section_1_txt_A_TF2_BOLD}>
-            5.4.3
-          </Text>
-        </View>
-      </TouchableNativeFeedback>
-    </View>
-
-    <View style={styles.section_1_CONT_SWH_1}>
-      <TouchableNativeFeedback
-        background={TouchableNativeFeedback.Ripple("#AFB1B13D", rippleOverflow)}
-      >
-        <View style={{
-          display: "flex",
-          flexDirection: "row",
-          marginLeft: 12,
-          marginRight: 12,
-        }}>
-          <Text style={styles.section_1_txt_A_TF2}>
-            Version code
-          </Text>
-          <Text style={styles.section_1_txt_A_TF2_BOLD}>
-            54
-          </Text>
-        </View>
-      </TouchableNativeFeedback>
-    </View>
 
     <View style={{
       minHeight: 80,

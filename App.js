@@ -5,10 +5,6 @@ import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/
 
 import Home from './components/Home';
 import Search from './components/Search';
-import IncognitoSearch from './components/IncognitoSearch';
-import Incognito from './components/Incognito';
-import Bookmarks from './components/Bookmarks';
-import History from './components/History';
 import Help from './components/Help';
 import Settings from './components/Settings';
 
@@ -19,7 +15,7 @@ import { Provider, useSelector } from 'react-redux';
 
 const initialState = {
   appInfo: {
-    searchEngine: "Google",
+    searchEngine: "百度",
     animations: true,
     animationDirection: true,
     disableCookies: false,
@@ -59,31 +55,6 @@ const NavigationContainerComponent = () => {
         <Stack.Screen
           name="Search"
           component={Search}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="IncognitoSearch"
-          component={IncognitoSearch}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Incognito"
-          component={Incognito}
-          options={{ 
-            headerShown: false,
-            animations: {
-              
-            }
-          }}
-        />
-        <Stack.Screen
-          name="Bookmarks"
-          component={Bookmarks}
-          options={{ headerShown: false }}
-        />
-          <Stack.Screen
-          name="History"
-          component={History}
           options={{ headerShown: false }}
         />
         <Stack.Screen
