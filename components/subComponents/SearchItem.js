@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import { Text, View, Image, TouchableNativeFeedback, FlatList, TouchableOpacity } from 'react-native';
+import {  View, Image, TouchableNativeFeedback, FlatList, TouchableOpacity } from 'react-native';
 import IonicIcon from 'react-native-vector-icons/Ionicons';
 import styles from "../styles/HomeStyle.js";
+import { Text, TextInput, Panel, Button, Divider, List } from 'react95-native'
 
 export default function SearchItem({searchValue, searchItems, openOutlineHandle, openWebsiteHandle}) {
 
@@ -45,9 +46,9 @@ export default function SearchItem({searchValue, searchItems, openOutlineHandle,
             </View>
 
             <View>
-            <TouchableOpacity onPress={() => {openOutlineHandle(item.item)}}>
+            <Button onPress={() => {openOutlineHandle(item.item)}}>
               <IonicIcon style={styles.searchItemsBB_1_C} name="open-outline"/>
-            </TouchableOpacity>
+            </Button>
             </View>
 
           </View>
@@ -70,9 +71,9 @@ export default function SearchItem({searchValue, searchItems, openOutlineHandle,
             </View>
 
             <View>
-            <TouchableOpacity onPress={() => {openOutlineHandle(item.item)}}>
+            <Button onPress={() => {openOutlineHandle(item.item)}}>
               <IonicIcon style={styles.searchItemsBB_1_C} name="open-outline"/>
-            </TouchableOpacity>
+            </Button>
             </View>
 
           </View>

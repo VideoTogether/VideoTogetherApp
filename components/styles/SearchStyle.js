@@ -21,9 +21,7 @@ const styles = StyleSheet.create({
 
     },
     sea1__2: {
-        backgroundColor: "#F2F2F2FF",
         height: 30,
-        borderRadius: 30,
         flexGrow: 1,
         display: "flex",
         flexDirection: "row",
@@ -65,7 +63,7 @@ const styles = StyleSheet.create({
         color: "#E57676FF",
     },
     sea1__2B_txt: {
-        color: "#787B7CFE",
+        color: "#fff",
         fontSize: 12,
         textAlign: "center",
     },
@@ -73,7 +71,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginLeft: 10,
         marginRight: 10,
-        color: "#787B7CFE",
+        color: "#fff",
 
     },
     sea1__3_icon: {
@@ -81,7 +79,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10,
         textAlign: "center",
-        color: "#787B7CFE",
+        color: "#fff",
     },
 
     search_2: {
@@ -104,12 +102,12 @@ const styles = StyleSheet.create({
     },
     sea3__3_icon: {
         fontSize: 20,
-        color: "#767778FE",
+        color: "#000",
         textAlign: "center",
     },
     sea3__3_icon_r:{
         fontSize: 20,
-        color: "#767778FE",
+        color: "#000",
         textAlign: "center",
     },
 
@@ -133,15 +131,12 @@ const styles = StyleSheet.create({
     optionAlertCont_opt_1: {
         paddingTop: 12,
         paddingBottom: 12,
-        borderBottomWidth: 1.6,
-        borderBottomColor: "#f1f1f1fe",
     },
     optionAlertCont_opt_1_B: {
         paddingTop: 12,
         paddingBottom: 16,
     },
     optionAlertCont_optText_1: {
-        color: "#7a7878fe",
         fontSize: 15,
         textAlign: "center",
         display: "flex",
@@ -163,7 +158,6 @@ const styles = StyleSheet.create({
         // width: "100%",
         // elevation: 8,
 
-        borderRadius: 8,
         height: "auto",
         width: "96%",
         elevation: 8,
@@ -180,8 +174,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         overflow: "hidden",
-        marginTop: 10,
-        marginBottom: 10,
+        height: 64,
     },
     view_input_c_1: {
         height: 44,

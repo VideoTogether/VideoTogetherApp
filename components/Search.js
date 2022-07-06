@@ -1,5 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { StatusBar, SafeAreaView, Text, View, Image, TouchableNativeFeedback, TouchableOpacity, Animated, ActivityIndicator, Share, ToastAndroid, Keyboard, TextInput } from 'react-native';
+import { StatusBar, SafeAreaView, View, Image, TouchableNativeFeedback, TouchableOpacity, Animated, ActivityIndicator, Share, ToastAndroid, Keyboard } from 'react-native';
+import { Text, TextInput, Panel, Button, Divider, List } from 'react95-native'
+import LinearGradient from 'react-native-linear-gradient';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { WebView } from 'react-native-webview';
 import 'react-native-gesture-handler';
@@ -55,6 +58,10 @@ const Search = ({ navigation, route }) => {
   window.ReactNativeWebView.postMessage(document.title);
 
   (function () {
+    if (window.VideoTogetherLoading) {
+      return;
+    }
+    window.VideoTogetherLoading = true;
     let wrapper = document.createElement("div");
     wrapper.innerHTML = \`<div id="videoTogetherLoading">
     <div style="width: 100%">
@@ -405,12 +412,6 @@ const Search = ({ navigation, route }) => {
 
   }
 
-  const voiceSearchBtnClk = () => {
-    speechToTextHandler();
-    setSearchAlertOpen(false);
-    setSearchOpen(false);
-  }
-
   const se4Remove = async () => {
     try {
       const value = await AsyncStorage.getItem("bookmarksKey");
@@ -424,8 +425,9 @@ const Search = ({ navigation, route }) => {
 
   return (
     <SafeAreaView>
-
+      <Panel>
       <StatusBar backgroundColor="#ffffff" barStyle={styleStatusBar} />
+
 
       <Modal
         isOpen={searchAlertOpen}
@@ -443,11 +445,9 @@ const Search = ({ navigation, route }) => {
         coverScreen={true}
         animationDuration={200}
       >
-        <View style={styles.view__2}>
-          <View style={{ borderRadius: 40, overflow: 'hidden' }}>
-            {/* <TouchableOpacity
-      style={{width: "100%"}}
-      > */}
+        <Panel style={styles.view__2}>
+          <View style={{ overflow: 'hidden' }}>
+
             <View style={styles.view_input_c_1}>
 
               <IonicIcon style={styles.search_icon} name="search" />
@@ -455,11 +455,9 @@ const Search = ({ navigation, route }) => {
               <TextInput
                 ref={inputRef}
                 style={{
-                  // maxWidth: 200,
+                  height: 48,
                   fontSize: 14,
-                  color: "#5B5D5DFF",
                   marginLeft: 8,
-                  fontFamily: "Helvetica",
                   flexGrow: 1,
                 }}
                 value={searchValue}
@@ -472,20 +470,13 @@ const Search = ({ navigation, route }) => {
                   searchStringS(searchValue);
                 }}
                 placeholderTextColor="#CECFCFFF"
-                placeholder="百度搜索"
+                placeholder="搜索"
               />
-
-              {
-                searchValue.length > 0 ?
-                  <IonicIcon onPress={() => setSearchValue("")} style={styles.mic_icon} name="close" />
-                  :
-                  <IonicIcon onPress={voiceSearchBtnClk} style={styles.mic_icon} name="mic" />
-              }
 
             </View>
             {/* </TouchableOpacity> */}
           </View>
-        </View>
+        </Panel>
 
       </Modal>
 
@@ -501,10 +492,11 @@ const Search = ({ navigation, route }) => {
         coverScreen={true}
         animationDuration={200}
       >
-        <View style={styles.optionAlertCont_MAIN}>
+        <Panel style={styles.optionAlertCont_MAIN}>
 
           <View style={styles.optionAlertCont_opt_1}>
-            <TouchableOpacity onPress={() => {
+            <Button
+              variant='menu' onPress={() => {
               setOptionsAlertOpen(false);
               copyToClipboard();
               showToast();
@@ -512,8 +504,9 @@ const Search = ({ navigation, route }) => {
               <Text style={styles.optionAlertCont_optText_1}>
                 复制链接
               </Text>
-            </TouchableOpacity>
+            </Button>
           </View>
+          <Divider></Divider>
           <View style={styles.optionAlertCont_opt_1}>
             <TouchableOpacity onPress={() => {
               setOptionsAlertOpen(false);
@@ -526,7 +519,7 @@ const Search = ({ navigation, route }) => {
               </Text>
             </TouchableOpacity>
           </View>
-
+          <Divider></Divider>
           <View style={styles.optionAlertCont_opt_1}>
             <TouchableOpacity onPress={() => {
               setOptionsAlertOpen(false);
@@ -537,7 +530,7 @@ const Search = ({ navigation, route }) => {
               </Text>
             </TouchableOpacity>
           </View>
-
+          <Divider></Divider>
           <View style={styles.optionAlertCont_opt_1_B}>
             <TouchableOpacity onPress={() => {
               setOptionsAlertOpen(false);
@@ -548,7 +541,7 @@ const Search = ({ navigation, route }) => {
               </Text>
             </TouchableOpacity>
           </View>
-
+          <Divider></Divider>
           <View style={styles.optionAlertCont_opt_icon_1}>
             <TouchableOpacity style={{
               width: "100%",
@@ -569,13 +562,14 @@ const Search = ({ navigation, route }) => {
             </TouchableOpacity>
           </View>
 
-        </View>
+        </Panel>
       </Modal>
 
       <View style={styles.searchMainContainer}>
 
+
         {/* Search 1 */}
-        <View style={styles.search_1}>
+        <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}}  colors={['#08216b', '#3b5998', '#a5cef7']} style={styles.search_1}>
           {
             currentUrl.includes("view-source:") ?
               <View style={styles.sea1__1}>
@@ -619,7 +613,6 @@ const Search = ({ navigation, route }) => {
 
           <View style={{
             height: 30,
-            borderRadius: 30,
             flexGrow: 1,
             overflow: "hidden",
           }}>
@@ -671,7 +664,7 @@ const Search = ({ navigation, route }) => {
               }
             </TouchableOpacity>
           </View>
-        </View>
+        </LinearGradient>
 
         {/* Search 2 */}
         <View style={styles.search_2}>
@@ -724,48 +717,48 @@ const Search = ({ navigation, route }) => {
               }}
             >
               <View style={styles.search_3}>
-                <TouchableOpacity onPress={se1} style={styles.sea_3_item}>
+                <Button onPress={se1} style={styles.sea_3_item}>
                   <View>
                     <IonicIcon style={styles.sea3__3_icon} name="chevron-back-outline" />
                   </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={se2} style={styles.sea_3_item}>
+                </Button>
+                <Button onPress={se2} style={styles.sea_3_item}>
                   <View>
                     <IonicIcon style={styles.sea3__3_icon} name="chevron-forward-outline" />
                   </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={se3} style={styles.sea_3_item}>
+                </Button>
+                <Button onPress={se3} style={styles.sea_3_item}>
                   <View>
                     <IonicIcon style={styles.sea3__3_icon} name="home-outline" />
                   </View>
-                </TouchableOpacity>
+                </Button>
                 {
                   bookmarksKeyValue.includes(currentUrl) ?
-                    <TouchableOpacity onPress={se4Remove} style={styles.sea_3_item}>
+                    <Button onPress={se4Remove} style={styles.sea_3_item}>
                       <View>
                         <IonicIcon style={styles.sea3__3_icon_r} name="heart" />
                       </View>
-                    </TouchableOpacity>
+                    </Button>
                     :
-                    <TouchableOpacity onPress={se4} style={styles.sea_3_item}>
+                    <Button onPress={se4} style={styles.sea_3_item}>
                       <View>
                         <IonicIcon style={styles.sea3__3_icon_r} name="heart-outline" />
                       </View>
-                    </TouchableOpacity>
+                    </Button>
                 }
 
-                <TouchableOpacity onPress={se5} style={styles.sea_3_item}>
+                <Button onPress={se5} style={styles.sea_3_item}>
 
                   <View>
                     <IonicIcon style={styles.sea3__3_icon} name="grid-outline" />
                   </View>
-                </TouchableOpacity>
+                </Button>
               </View>
             </Animated.View>
         }
 
       </View>
-
+      </Panel>
     </SafeAreaView>
   );
 

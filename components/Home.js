@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { StatusBar, SafeAreaView, Text, View, Image, ScrollView, TouchableNativeFeedback, TouchableOpacity, Animated, ActivityIndicator, TextInput, Keyboard, BackHandler, Linking } from 'react-native';
+import { StatusBar, SafeAreaView, View, Image, ScrollView, TouchableNativeFeedback, TouchableOpacity, Animated, ActivityIndicator, Keyboard, BackHandler, Linking } from 'react-native';
+import { Text, TextInput, Panel, Button, Divider, List } from 'react95-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import styles from "./styles/HomeStyle.js";
@@ -517,370 +518,234 @@ const Home = ({ navigation, route }) => {
 
   return (
     <SafeAreaView>
+      <Panel>
+        <StatusBar backgroundColor="#ffffff" barStyle={styleStatusBar} />
 
-      <StatusBar backgroundColor="#ffffff" barStyle={styleStatusBar} />
-
-      <Modal
-        isOpen={optionsAlertOpen}
-        onClosed={() => { setOptionsAlertOpen(false) }}
-        style={[styles.modal, styles.modal8]}
-        position={"bottom"}
-        backdropPressToClose={true}
-        swipeToClose={false}
-        backdropOpacity={0.2}
-        backButtonClose={true}
-        coverScreen={true}
-        animationDuration={appInfo.animations == false ? 0 : 200}
-      >
-        <View style={styles.optionAlertCont_MAIN}>
-          <View style={styles.optionAlertCont_opt_1}>
-            <TouchableOpacity onPress={() => {
-              setOptionsAlertOpen(false);
-              navigation.navigate('Settings', { name: "Home" });
-            }}>
-              <Text style={styles.optionAlertCont_optText_1}>
-                设置
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.optionAlertCont_opt_1}>
-            <TouchableOpacity onPress={() => {
-              setOptionsAlertOpen(false);
-              navigation.navigate('Help', { name: "Home" });
-            }}>
-              <Text style={styles.optionAlertCont_optText_1}>
-                帮助
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.optionAlertCont_opt_1_B}>
-            <TouchableOpacity onPress={() => {
-              BackHandler.exitApp();
-            }}>
-              <Text style={styles.optionAlertCont_optText_1}>
-                退出
-              </Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.optionAlertCont_opt_icon_1}>
-            <TouchableOpacity style={{
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              paddingBottom: 10,
-              marginBottom: 4,
-            }} onPress={() => { setOptionsAlertOpen(false) }}>
-              {/* <FontAwesome style={styles.optionAlertCont_opt_icon_2} name="chevron-down"/> */}
-              <Image
-                source={require("../assets/arrowDown2.png")}
-                style={{
-                  height: 26,
-                  width: 26,
-                }}
-              />
-            </TouchableOpacity>
-          </View>
-
-        </View>
-      </Modal>
-
-      <Modal
-        isOpen={pinAlertOpen}
-        onClosed={() => { setPinAlertOpen(false) }}
-        style={[styles.modal, styles.modal4]}
-        position={"center"}
-        backdropPressToClose={true}
-        swipeToClose={false}
-        backdropOpacity={0.2}
-        backButtonClose={true}
-        coverScreen={true}
-        animationDuration={appInfo.animations == false ? 0 : 200}
-      >
-
-        {/* <StatusBar backgroundColor="#CCCCCCFF" barStyle={styleStatusBar} /> */}
-
-        <View style={styles.pinAlertCont_MAIN}>
-
-          <View style={styles.pinAlertContAA}>
-
-            <View style={styles.pinAlertCont1_1}>
-              <IonicIcon name="bookmark" style={styles.pinAlertCont1_1_icon} />
-            </View>
-            <View style={styles.pinAlertCont1_2}>
-              <Text style={styles.pinAlertCont1_2_txt}>Edit Bookmark</Text>
-            </View>
-            <View style={styles.pinAlertCont1_3}>
-              <View
-                style={{
-                  borderRadius: 18,
-                  overflow: "hidden",
-                }}>
-                <TouchableOpacity onPress={() => { setPinAlertOpen(false) }}>
-                  <View style={styles.pinAlertCont1_3_ripple}>
-                    <IonicIcon name="close" style={styles.pinAlertCont1_3_icon} />
-                  </View>
-                </TouchableOpacity>
-              </View>
-            </View>
-
-          </View>
-
-          <View style={styles.pinAlertContBB}>
-            <View style={styles.pinAlertCont1_B_1}>
-              <Text style={styles.pinAlertCont1_B_1_TXT}>Name</Text>
-            </View>
-            <View style={styles.pinAlertCont1_B_2}>
-              <TextInput
-                style={{
-                  fontSize: 14,
-                  color: "#888787FE",
-                  marginLeft: 8,
-                  fontFamily: "Helvetica",
-                  flexGrow: 1,
-                  borderWidth: 1.6,
-                  borderRadius: 4,
-                  borderColor: "#D2CECEFE",
-                  paddingLeft: 8,
-                  paddingTop: 6,
-                  paddingBottom: 6,
-                }}
-                value={EBName}
-                onChangeText={(text) => onEditBChangeName(text)}
-                editable={true}
-                placeholder="Enter Name"
-                placeholderTextColor="#C7C3C3FE"
-              />
-            </View>
-          </View>
-
-          <View style={styles.pinAlertContCC}>
-            <View style={styles.pinAlertCont1_C_1}>
-              <Text style={styles.pinAlertCont1_B_2_TXT}>URL</Text>
-            </View>
-            <View style={styles.pinAlertCont1_C_2}>
-              <TextInput
-                style={{
-                  fontSize: 14,
-                  color: "#888787FE",
-                  marginLeft: 8,
-                  fontFamily: "Helvetica",
-                  flexGrow: 1,
-                  borderWidth: 1.6,
-                  borderRadius: 4,
-                  borderColor: "#D2CECEFE",
-                  paddingLeft: 8,
-                  paddingTop: 6,
-                  paddingBottom: 6,
-                }}
-                value={EBUrl}
-                onChangeText={(text) => onEditBChangeURL(text)}
-                editable={true}
-                placeholder="Enter URL"
-                placeholderTextColor="#C7C3C3FE"
-              />
-            </View>
-          </View>
-
-          <View style={styles.pinAlertContDD}>
-
-            <View style={styles.pinAlertCont1_D_1}>
-              <TouchableOpacity onPress={() => { setPinAlertOpen(false) }}>
-                <Text style={styles.pinAlertCont1_D_1_TXT}>Cancel</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.pinAlertCont1_D_2}>
-              <TouchableOpacity onPress={() => {
-                savePIN(currentClickedPin);
-              }}>
-                <Text style={
-                  EBName.length || EBUrl.length > 0 ?
-                    styles.pinAlertCont1_D_2_TXT_HIG
-                    : styles.pinAlertCont1_D_2_TXT
-                }>Save</Text>
-              </TouchableOpacity>
-            </View>
-
-          </View>
-
-        </View>
-
-      </Modal>
-
-      <ScrollView ref={scrollRef} style={styles.scrollView} scrollEnabled={!searchOpen} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={'handled'} scrollEventThrottle={1}>
-
-        <Animated.View
-          style={{
-            translateY: translY
-          }}
+        <Modal
+          isOpen={optionsAlertOpen}
+          onClosed={() => { setOptionsAlertOpen(false) }}
+          style={[styles.modal, styles.modal8]}
+          position={"bottom"}
+          backdropPressToClose={true}
+          swipeToClose={false}
+          backdropOpacity={0.2}
+          backButtonClose={true}
+          coverScreen={true}
+          animationDuration={appInfo.animations == false ? 0 : 200}
         >
+          <Panel style={styles.optionAlertCont_MAIN}>
 
-          {/* View 1 */}
-          <Animated.View
-            style={{
-              marginTop: view1marTop1
-            }}
-          >
-            <View style={styles.view__1}>
-              <Image
-                source={require("../assets/vt.png")}
-                style={{ resizeMode: 'contain', width: 64, height: 64 }}
-              />
-            </View>
-          </Animated.View>
-
-          <View style={{
-            position: "absolute",
-            right: 20,
-            top: 20,
-            height: 32,
-            width: 32,
-            backgroundColor: "#F5F5F5",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: 32
-          }}>
-            <TouchableOpacity onPressIn={() => {
-              setOptionsAlertOpen(true);
-            }}>
-              <View style={{
-                height: 32,
-                width: 32,
-                backgroundColor: "#F5F5F5",
+            <Button
+              variant='menu'
+              onPress={() => {
+                setOptionsAlertOpen(false);
+                navigation.navigate('Settings', { name: "Home" });
+              }}>设置</Button>
+            <Divider></Divider>
+            <Button
+              variant='menu'
+              onPress={() => {
+                setOptionsAlertOpen(false);
+                navigation.navigate('Help', { name: "Home" });
+              }}>帮助</Button>
+            <Divider></Divider>
+            <Button
+              variant='menu'
+              onPress={() => {
+                BackHandler.exitApp();
+              }}>退出</Button>
+            <Divider></Divider>
+            <View style={styles.optionAlertCont_opt_icon_1}>
+              
+              <TouchableOpacity style={{
+                width: "100%",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                borderRadius: 32
-              }}>
+                paddingBottom: 10,
+                marginBottom: 4,
+              }} onPress={() => { setOptionsAlertOpen(false) }}>
+                {/* <FontAwesome style={styles.optionAlertCont_opt_icon_2} name="chevron-down"/> */}
+                <Image
+                  source={require("../assets/arrowDown2.png")}
+                  style={{
+                    height: 26,
+                    width: 26,
+                  }}
+                />
+              </TouchableOpacity>
+            </View>
+
+          </Panel>
+        </Modal>
+
+
+        <ScrollView ref={scrollRef} style={styles.scrollView} scrollEnabled={!searchOpen} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={'handled'} scrollEventThrottle={1}>
+
+          <Animated.View
+            style={{
+              translateY: translY
+            }}
+          >
+
+            {/* View 1 */}
+            <Animated.View
+              style={{
+                marginTop: view1marTop1
+              }}
+            >
+              <View style={styles.view__1}>
+                <Panel>
+                  <Image
+                    source={require("../assets/vt.png")}
+                    style={{ resizeMode: 'contain', width: 64, height: 64 }}
+                  />
+                </Panel>
+
+              </View>
+            </Animated.View>
+
+            <View style={{
+              position: "absolute",
+              right: 20,
+              top: 20,
+              height: 48,
+              width: 48,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}>
+
+              <Button onPress={() => {
+                setOptionsAlertOpen(true);
+              }} >
                 <IonicIcon style={{
                   color: "#8F8D8DFE",
                   fontSize: 16,
                 }} name="ellipsis-vertical" />
+              </Button>
+            </View>
+
+            {/* View 2 */}
+            <View style={styles.view__2}>
+
+              <View>
+
+                <TouchableOpacity
+                  onPress={searchBarClicked1}
+                  style={{ width: "100%" }}
+                >
+
+                  <Panel style={styles.view_input_c_1}>
+
+                    {
+                      searchOpen
+                        ?
+                        <IonicIcon onPress={closeSearchBtn} style={styles.search_icon} name="arrow-back" />
+                        :
+                        <IonicIcon style={styles.search_icon} name="search" />
+                    }
+
+                    {
+                      searchOpen ?
+                        <TextInput
+                          style={{
+                            fontSize: 14,
+                            color: "#5B5D5DFF",
+                            marginLeft: 8,
+                            fontFamily: "Helvetica",
+                            flexGrow: 1,
+                          }}
+                          value={searchValue}
+                          onChangeText={(text) => onSearchChangeText(text)}
+                          autoFocus={true}
+                          editable={searchOpen}
+                          onSubmitEditing={() => searchString(searchValue)}
+                          placeholderTextColor="#CECFCFFF"
+                        />
+                        :
+                        <Text style={styles.search_text}>搜索 {appInfo.searchEngine.replace("!", "")}</Text>
+                    }
+
+                  </Panel>
+
+                </TouchableOpacity>
+
               </View>
-            </TouchableOpacity>
-          </View>
-
-          {/* View 2 */}
-          <View style={styles.view__2}>
-
-            <View style={{ borderRadius: 40, overflow: 'hidden' }}>
-
-              <TouchableOpacity
-                onPress={searchBarClicked1}
-                style={{ width: "100%" }}
-              >
-
-                <View style={styles.view_input_c_1}>
-
-                  {
-                    searchOpen
-                      ?
-                      <IonicIcon onPress={closeSearchBtn} style={styles.search_icon} name="arrow-back" />
-                      :
-                      <IonicIcon style={styles.search_icon} name="search" />
-                  }
-
-                  {
-                    searchOpen ?
-                      <TextInput
-                        style={{
-                          fontSize: 14,
-                          color: "#5B5D5DFF",
-                          marginLeft: 8,
-                          fontFamily: "Helvetica",
-                          flexGrow: 1,
-                        }}
-                        value={searchValue}
-                        onChangeText={(text) => onSearchChangeText(text)}
-                        autoFocus={true}
-                        editable={searchOpen}
-                        onSubmitEditing={() => searchString(searchValue)}
-                        placeholderTextColor="#CECFCFFF"
-                      />
-                      :
-                      <Text style={styles.search_text}>搜索 {appInfo.searchEngine.replace("!", "")}</Text>
-                  }
-
-                </View>
-
-              </TouchableOpacity>
 
             </View>
 
-          </View>
+            {/* Search */}
 
-          {/* Search */}
+            <Animated.View
+              style={{
+                opacity: searchItemsBBo2,
+              }}
+            >
 
-          <Animated.View
-            style={{
-              opacity: searchItemsBBo2,
-            }}
-          >
+              {
+                searchOpen ?
+                  <View style={styles.searchItemsBB_1}>
 
-            {
-              searchOpen ?
-                <View style={styles.searchItemsBB_1}>
-
-                  {
-                    lastSearchedWeb == false || searchValue !== "" ?
-                      <></> :
-                      <View style={styles.searchItemsBB_CON_1}>
-                        <View>
-                          <IonicIcon style={styles.searchItemsBB_1_A} name="globe-outline" />
+                    {
+                      lastSearchedWeb == false || searchValue !== "" ?
+                        <></> :
+                        <View style={styles.searchItemsBB_CON_1}>
+                          <View>
+                            <IonicIcon style={styles.searchItemsBB_1_A} name="globe-outline" />
+                          </View>
+                          <View style={styles.searchItemsBB_1_B_CON}>
+                            <TouchableOpacity onPress={() => { openWebsite(lastSearchedWeb.url) }}>
+                              <View>
+                                <Text style={styles.searchItemsBB_1_B}>
+                                  {lastSearchedWeb.name.length > 26 ? lastSearchedWeb.name.substring(0, 24) + "..." : lastSearchedWeb.name}
+                                </Text>
+                                <Text style={styles.searchItemsBB_1_B__2}>
+                                  {lastSearchedWeb.url.length > 38 ? lastSearchedWeb.url.substring(0, 36) + "..." : lastSearchedWeb.url}
+                                </Text>
+                              </View>
+                            </TouchableOpacity>
+                          </View>
+                          <View>
+                            <Button onPress={deleteLastSearchWeb}>
+                              <IonicIcon style={styles.searchItemsBB_1_C} name="trash-outline" />
+                            </Button>
+                          </View>
                         </View>
-                        <View style={styles.searchItemsBB_1_B_CON}>
-                          <TouchableOpacity onPress={() => { openWebsite(lastSearchedWeb.url) }}>
-                            <View>
-                              <Text style={styles.searchItemsBB_1_B}>
-                                {lastSearchedWeb.name.length > 26 ? lastSearchedWeb.name.substring(0, 24) + "..." : lastSearchedWeb.name}
-                              </Text>
-                              <Text style={styles.searchItemsBB_1_B__2}>
-                                {lastSearchedWeb.url.length > 38 ? lastSearchedWeb.url.substring(0, 36) + "..." : lastSearchedWeb.url}
-                              </Text>
-                            </View>
-                          </TouchableOpacity>
-                        </View>
-                        <View>
-                          <TouchableOpacity onPress={deleteLastSearchWeb}>
-                            <IonicIcon style={styles.searchItemsBB_1_C} name="trash-outline" />
-                          </TouchableOpacity>
-                        </View>
-                      </View>
-                  }
+                    }
+                    <Divider style={{ marginTop: 16 }}></Divider>
+                    {
 
-                  {
-                    searchItems == "" ? <></> :
-                      <>
-                        {
-                          searchValue !== "" ?
-                            <></> :
-                            <Text style={styles.searchHeadingB_1}>搜索历史</Text>
-                        }
-                        <SearchItem searchValue={searchValue} searchItems={searchItems} openOutlineHandle={openOutlineHandle} openWebsiteHandle={openWebsiteHandle} />
-                      </>
-                  }
+                      searchItems == "" ? <></> :
+                        <>
+                          {
+                            searchValue !== "" ?
+                              <></> :
+                              <Text style={styles.searchHeadingB_1}>搜索历史</Text>
+                          }
+                          <SearchItem searchValue={searchValue} searchItems={searchItems} openOutlineHandle={openOutlineHandle} openWebsiteHandle={openWebsiteHandle} />
+                        </>
+                    }
 
-                </View>
-                :
-                <></>
-            }
+                  </View>
+                  :
+                  <></>
+              }
+
+            </Animated.View>
+
+            <Animated.View
+              style={{
+                opacity: bottomViewsAll2
+              }}
+            >
+
+            </Animated.View>
 
           </Animated.View>
 
-          <Animated.View
-            style={{
-              opacity: bottomViewsAll2
-            }}
-          >
-
-          </Animated.View>
-
-        </Animated.View>
-
-      </ScrollView>
-
+        </ScrollView>
+      </Panel>
     </SafeAreaView>
   )
 

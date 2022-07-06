@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
     scrollView: {
       height: "100%",
       width: "100%",
-      backgroundColor: "#ffffff",
       borderBottomWidth: 1,
       borderBottomColor: "#EFEFF1FE",
     },
@@ -23,37 +22,23 @@ const styles = StyleSheet.create({
     },
 
     view_input_c_1: {
-      height: 44,
       width: "92%",
       maxWidth: "92%",
-      backgroundColor: "#F5F5F5",
-      borderRadius: 40,
-      display: "flex",
       flexDirection: "row",
       alignItems: "center",
-      overflow: "hidden",
     },
 
     search_icon: {
       fontSize: 17,
-      color: "#8F8D8DFE",
       width: 36,
       textAlign: "right",
       height: 44,
       paddingTop: 13,
     },
-    mic_icon: {
-      fontSize: 18,
-      color: "#8F8D8DFE",
-      height: 44,
-      width: 36,
-      paddingTop: 13,
-    },
+
     search_text: {
-      fontSize: 14,
-      color: "#8F8D8DFE",
+      fontSize: 16,
       marginLeft: 16,
-      fontFamily: "Helvetica",
       flexGrow: 1,
     },
 
@@ -81,7 +66,6 @@ const styles = StyleSheet.create({
       backgroundColor: "#f5f5f5",
       height: 50,
       width: 50,
-      borderRadius: 22,
       overflow: "hidden",
     },
     view_3_item_c: {
@@ -113,7 +97,6 @@ const styles = StyleSheet.create({
     },
     view_5_ic_1:{
       flexGrow: 1,
-      borderRadius: 100,
       overflow: "hidden",
       marginLeft: 20,
       marginRight: 20,
@@ -122,7 +105,6 @@ const styles = StyleSheet.create({
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "center",
-      borderRadius: 100,
       overflow: "hidden",
       paddingLeft: 16,
       paddingRight: 16,
@@ -147,14 +129,12 @@ const styles = StyleSheet.create({
     view_5_A_1: {
       width: "100%",
       marginBottom: 10,
-      borderRadius: 12,
       overflow: "hidden",
     },
     view_5_A__1AA: {
       alignItems: "center",
       justifyContent: "center",
       flexDirection: "row",
-      borderRadius: 12,
       overflow: "hidden",
       marginLeft: 20,
       marginRight: 20,
@@ -163,7 +143,6 @@ const styles = StyleSheet.create({
       alignItems: "center",
       justifyContent: "center",
       flexDirection: "row",
-      borderRadius: 12,
       overflow: "hidden",
       marginLeft: 20,
       marginRight: 20,
@@ -177,7 +156,6 @@ const styles = StyleSheet.create({
 
       borderWidth: 1.4,
       borderColor: "#EFEFF1FE",
-      borderRadius: 14,
       padding: 6,
     },
     view_5_A_2: {
@@ -195,7 +173,6 @@ const styles = StyleSheet.create({
       resizeMode: "cover",
       height: 72,
       width: 72,
-      borderRadius: 12,
       overflow: "hidden",
     },
     view_5_A_3_A: {
@@ -283,23 +260,19 @@ const styles = StyleSheet.create({
       flexGrow: 1,
     },
     searchItemsBB_1_B: {
-      color: "#696A6CFE",
       marginLeft: 12,
       fontSize: 14,
     },
     searchItemsBB_1_B__2: {
-      color: "#aaabacfe",
       marginLeft: 12,
       fontSize: 12,
     },
     searchItemsBB_1_C: {
       color: "#8c8e8ffe",
-      marginRight: 12,
       fontSize: 20,
     },
 
     searchHeadingB_1: {
-      color: "#9c9d9efe",
       fontSize: 11,
       marginLeft: 20,
       marginTop: 20,
@@ -308,7 +281,6 @@ const styles = StyleSheet.create({
     modal4: {
       height: "auto",
       width: "90%",
-      borderRadius: 4,
       elevation: 8,
     },
 
@@ -352,7 +324,6 @@ const styles = StyleSheet.create({
     },
     pinAlertCont1_3_ripple: {
       padding: 8,
-      borderRadius: 100,
       overflow: "hidden",
     },
     pinAlertCont1_1_icon: {
@@ -418,7 +389,6 @@ const styles = StyleSheet.create({
       marginLeft: 10,
       backgroundColor: "#F6F5F5FE",
       padding: 6,
-      borderRadius: 2,
       paddingLeft: 14,
       paddingRight: 14,
       color: "#888787FE",
@@ -431,7 +401,6 @@ const styles = StyleSheet.create({
       backgroundColor: "#888787FE",
       // backgroundColor: "#F6F5F5FE",
       padding: 6,
-      borderRadius: 2,
       paddingLeft: 18,
       paddingRight: 18,
       color: "#F6F5F5FE",
@@ -444,7 +413,6 @@ const styles = StyleSheet.create({
       marginLeft: 10,
       backgroundColor: "#2196F2FF",
       padding: 6,
-      borderRadius: 2,
       paddingLeft: 18,
       paddingRight: 18,
       color: "white",

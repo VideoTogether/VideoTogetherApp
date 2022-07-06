@@ -4,7 +4,6 @@ const styles = StyleSheet.create({
 
     settingsMainContainer: {
         height: '100%',
-        backgroundColor: "white",
     },
 
     history_title_1: {
@@ -18,12 +17,12 @@ const styles = StyleSheet.create({
     },
     history_title_1A_icon: {
         fontSize: 20,
-        color: "#767474FE",
+        color: "#fff",
         marginLeft: 20,
         marginRight: 10,
     },
     history_title_1B_txt: {
-        color: "#767474FE",
+        color: "#fff",
         fontSize: 16,
         fontFamily: "Helvetica",
     },
@@ -35,7 +34,7 @@ const styles = StyleSheet.create({
     },
 
     section_1_txt: {
-        color: "#7A7575FE",
+        color: "#111",
         fontSize: 14,
         fontWeight: "bold",
         fontFamily: "Helvetica",
@@ -52,15 +51,13 @@ const styles = StyleSheet.create({
     },
     section_1_txt_A: {
         fontSize: 15.4,
-        color: "#6C7377FE",
-        fontFamily: "Helvetica",
+        color: "#000",
         marginLeft: 8,
         marginTop: 4,
     },
     section_1_txt_B: {
         fontSize: 14,
-        color: "#848C8FFE",
-        fontFamily: "Helvetica",
+        color: "#000",
         marginLeft: 8,
         marginBottom: 4,
     },
@@ -72,7 +69,7 @@ const styles = StyleSheet.create({
     },
     section_1_txt_A_TF2: {
         fontSize: 15.4,
-        color: "#6C7377FE",
+        color: "#000",
         fontFamily: "Helvetica",
         marginLeft: 8,
         marginTop: 4,

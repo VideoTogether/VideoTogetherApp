@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { StatusBar, SafeAreaView, Text, View, ScrollView, TouchableNativeFeedback, TouchableOpacity, Switch, Linking, Share } from 'react-native';
+import { StatusBar, SafeAreaView, View, ScrollView, TouchableNativeFeedback, TouchableOpacity, Switch, Linking, Share } from 'react-native';
 // import { WebView } from 'react-native-webview';
 import 'react-native-gesture-handler';
+import { Text, TextInput, Panel, Button, Divider, List,Radio } from 'react95-native'
+import LinearGradient from 'react-native-linear-gradient';
 
 import IonicIcon from 'react-native-vector-icons/Ionicons';
 // import Icon from 'react-native-vector-icons/FontAwesome';
@@ -50,9 +52,10 @@ const Settings = ({ navigation, route }) => {
       setDefaultBrowserNum(2);
     } else if(appInfo.searchEngine == "Bing") {
       setDefaultBrowserNum(3);
-    }
-    else if(appInfo.searchEngine == "Yahoo!"){
+    } else if(appInfo.searchEngine == "Yahoo!"){
       setDefaultBrowserNum(4);
+    } else if(appInfo.searchEngine == "百度"){
+      setDefaultBrowserNum(5);
     } else {
       setDefaultBrowserNum(1);
     }
@@ -90,7 +93,7 @@ const Settings = ({ navigation, route }) => {
         disableJS: false
       }});
       
-      setDefaultBrowserNum(1);
+      setDefaultBrowserNum(5);
       setSelectedSelection("百度");
 
       setIsAnimationEnabled(true);
@@ -121,6 +124,7 @@ const Settings = ({ navigation, route }) => {
 
   return (
     <SafeAreaView>
+      <Panel>
     <StatusBar backgroundColor="#ffffff" barStyle={styleStatusBar}/>
 
     <Modal 
@@ -135,7 +139,7 @@ const Settings = ({ navigation, route }) => {
       coverScreen={true} 
       animationDuration={200}
     >
-      <View style={styles.modal4__1A}>
+      <Panel style={styles.modal4__1A}>
 
         <View style={{
           display: "flex",
@@ -145,15 +149,13 @@ const Settings = ({ navigation, route }) => {
         }}>
           <Text style={{
             fontSize: 16,
-            color: "#6C7377FE",
-            fontFamily: "Helvetica",
             marginLeft: 20,
             marginTop: 4,
             marginRight: 10,
             paddingBottom: 4,
             flexGrow: 1,
           }}>
-            Search Engine
+            搜索引擎
           </Text>
           <TouchableOpacity onPress={closeSearchEngine}>
             <View>
@@ -178,7 +180,7 @@ const Settings = ({ navigation, route }) => {
               initial={defaultBrowserNum}
               selectedBtn={(e) => {setSelectedSelection(e.label)}}
               animationTypes={[]}
-              textColor="#6C7377FE"
+              textColor="#000"
               circleSize={14}
               duration={200}
               textStyle={{
@@ -189,18 +191,18 @@ const Settings = ({ navigation, route }) => {
               }}
               icon={
                 <IonicIcon name="checkmark-circle-outline" style={{
-                  fontSize: 22,
-                  color: "#6C7377FE",
+                  fontSize: 18,
+                  color: "#000",
                 }}/>
               }
             />
             </View>
         </View>
 
-      </View>
+      </Panel>
     </Modal>
 
-    <View style={styles.history_title_1}>
+         <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}}  colors={['#08216b', '#3b5998', '#a5cef7']}  style={styles.history_title_1}>
       <TouchableOpacity onPress={() => {navigation.goBack()}}>
         <View style={styles.history1_AA}>
           <IonicIcon name="arrow-back" style={styles.history_title_1A_icon}/>
@@ -209,7 +211,7 @@ const Settings = ({ navigation, route }) => {
       <View style={styles.history1_BB}>
         <Text style={styles.history_title_1B_txt}>设置</Text>
       </View>
-    </View>
+    </LinearGradient>
     {/* <LinearGradient colors={['#EDEEEEFE', '#FFFFFFFF']} style={styles.linearGradient_1}></LinearGradient> */}
 
     <ScrollView style={styles.settingsMainContainer} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={'handled'} scrollEventThrottle={1}>
@@ -234,12 +236,7 @@ const Settings = ({ navigation, route }) => {
       </TouchableNativeFeedback>
     </View>
 
-    <View style={{
-      minHeight: 1,
-      backgroundColor: "#EDEEEEFE",
-      marginTop: 10,
-      marginBottom: 10,
-    }}></View>
+    <Divider></Divider>
 
     <View>
       <Text style={styles.section_1_txt}>高级设置</Text>
@@ -299,12 +296,7 @@ const Settings = ({ navigation, route }) => {
       </TouchableNativeFeedback>
     </View>
 
-    <View style={{
-      minHeight: 1,
-      backgroundColor: "#EDEEEEFE",
-      marginTop: 10,
-      marginBottom: 10,
-    }}></View>
+    <Divider></Divider>
 
     <View>
       <Text style={styles.section_1_txt}>APP</Text>
@@ -331,12 +323,7 @@ const Settings = ({ navigation, route }) => {
     </View>
 
 
-    <View style={{
-      minHeight: 1,
-      backgroundColor: "#EDEEEEFE",
-      marginTop: 10,
-      marginBottom: 10,
-    }}></View>
+ <Divider></Divider>
 
 
     <View style={{
@@ -344,6 +331,7 @@ const Settings = ({ navigation, route }) => {
     }}></View>
     
     </ScrollView>
+    </Panel>
     </SafeAreaView>
   );
 
