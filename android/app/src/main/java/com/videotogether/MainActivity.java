@@ -1,4 +1,4 @@
-package com.turbobrowserm;
+package com.videotogether;
 
 import com.facebook.react.ReactActivity;
 
@@ -9,6 +9,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "TurboBrowserM";
+    return "videotogether";
   }
 }

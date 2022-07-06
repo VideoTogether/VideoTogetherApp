@@ -35,12 +35,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.turbobrowserm",
+    package = "com.videotogether",
 )
 
 android_resource(
     name = "res",
-    package = "com.turbobrowserm",
+    package = "com.videotogether",
     res = "src/main/res",
 )
 
