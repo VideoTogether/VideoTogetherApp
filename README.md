@@ -1,3 +1,6 @@
+# 请访问插件主页获取更多信息：https://videotogether.github.io/
+# Video Together App 基于开源浏览器开发，下面是原浏览器的 README
+# Video Together App is based on the open source browser, below is the original README of the browser
 <p align="center">
     <img height="50px" src="https://res.cloudinary.com/dpj9ddsjf/image/upload/v1616272706/planetIcon_l7q4jy.svg" alt="Turbo Browser svg icon" />
 </p>
