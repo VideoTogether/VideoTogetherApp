@@ -701,6 +701,7 @@ const Search = ({ navigation, route }) => {
                 onMessage={onMessage}
                 javaScriptEnabled={appInfo.disableJS == true ? false : true}
                 domStorageEnabled={appInfo.disableCookies == true ? false : true}
+                allowsFullscreenVideo={true}
               />
               : <></>
           }
