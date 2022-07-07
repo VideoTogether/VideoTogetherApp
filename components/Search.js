@@ -14,7 +14,6 @@ import styles from "./styles/SearchStyle.js";
 
 import Modal from 'react-native-modalbox';
 import Clipboard from '@react-native-clipboard/clipboard';
-import SpeechToText from 'react-native-google-speech-to-text';
 
 import { useSelector } from 'react-redux';
 
@@ -169,15 +168,6 @@ const Search = ({ navigation, route }) => {
     };
   }, []);
 
-  const speechToTextHandler = async () => {
-    let speechToTextData = null;
-    try {
-      speechToTextData = await SpeechToText.startSpeech('Try saying something', 'en_IN');
-      searchStringS(speechToTextData);
-    } catch (error) {
-      // error
-    }
-  }
 
   const _keyboardDidShow = () => {
     if (route.name == "Search") {

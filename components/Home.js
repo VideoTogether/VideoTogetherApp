@@ -13,7 +13,6 @@ import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 
 import Modal from 'react-native-modalbox';
-import SpeechToText from 'react-native-google-speech-to-text';
 
 import { useSelector, useDispatch } from 'react-redux';
 
