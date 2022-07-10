@@ -1,3 +1,5 @@
+# 安卓上推荐中国用户使用狐猴浏览器，国外用户使用 kiwi 浏览器，不再单独维护一个安卓应用
+# Recommend use kiwi browser on Android. This app is no longer maintained.
 # 请访问插件主页获取更多信息：https://videotogether.github.io/
 # Video Together App 基于开源浏览器开发，下面是原浏览器的 README
 # Video Together App is based on the open source browser, below is the original README of the browser
